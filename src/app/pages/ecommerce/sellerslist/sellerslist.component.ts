@@ -1,0 +1,43 @@
+import { Component, OnInit } from '@angular/core';
+
+import { Customers } from './customers.model';
+
+import { customersData } from './data';
+
+@Component({
+  selector: 'app-sellerslist',
+  templateUrl: './sellerslist.component.html',
+  styleUrls: ['./sellerslist.component.scss']
+})
+export class SellerslistComponent implements OnInit {
+
+ // bread crumb items
+ breadCrumbItems: Array<{}>;
+
+ customersData: Customers[];
+
+ term: any;
+
+ // page
+ currentpage: number;
+
+ constructor() { }
+
+ ngOnInit() {
+   this.breadCrumbItems = [{ label: 'Sellers' }, { label: 'Sellers', active: true }];
+
+   this.currentpage = 1;
+
+   /**
+    * Fetches the data
+    */
+   this._fetchData();
+ }
+
+ /**
+  * Customers data fetches
+  */
+ private _fetchData() {
+   this.customersData = customersData;
+ }
+}
