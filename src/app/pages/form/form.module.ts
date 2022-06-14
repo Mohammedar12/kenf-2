@@ -9,7 +9,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { DropzoneModule } from 'ngx-dropzone-wrapper';
+
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { UIModule } from '../../shared/ui/ui.module';
 import { FormRoutingModule } from './form-routing.module';
@@ -23,6 +24,13 @@ import { AdvancedformComponent } from './advancedform/advancedform.component';
 import { RepeaterComponent } from './repeater/repeater.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 import { AdduserComponent } from './adduser/adduser.component';
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+const config: DropzoneConfigInterface = {
+  // Change this to your upload POST address:
+
+};
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
@@ -39,8 +47,15 @@ import { AdduserComponent } from './adduser/adduser.component';
     NgSelectModule,
     UiSwitchModule,
     ColorPickerModule,
+    DropzoneModule,
     NgbDatepickerModule,
-    DropzoneModule
+    NgbAlertModule,
+  ],
+  providers: [
+    {
+      provide: DROPZONE_CONFIG,
+      useValue: config
+    }
   ]
 })
 export class FormModule { }

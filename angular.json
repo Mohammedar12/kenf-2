@@ -31,7 +31,8 @@
               "src/styles.scss",
               "src/assets/scss/bootstrap.scss",
               "src/assets/scss/app.scss",
-              "src/assets/scss/icons.scss"
+              "src/assets/scss/icons.scss",
+              "node_modules/ngx-toastr/toastr.css" 
             ],
             "scripts": []
           },

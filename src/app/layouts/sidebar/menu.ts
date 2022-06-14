@@ -11,14 +11,14 @@ export const MENU: MenuItem[] = [
         label: 'Home',
         icon: 'bx-home-circle',
         link: '/dashboard'
-        
+
     },
     {
         id: 113,
         label: 'System Info',
         icon: 'bx-file',
         link: '/form/layouts'
-        
+
     },
     {
         id: 114,
@@ -28,37 +28,37 @@ export const MENU: MenuItem[] = [
             {
                 id: 1141,
                 label: 'Item Groups',
-                link: '/tables/itemsgroups',
+                link: '/settings/itemsgroups',
                 parentId: 114
             },
             {
                 id: 1141,
                 label: 'Item Categories',
-                link: '/tables/itemcategories',
+                link: '/settings/itemcategories',
                 parentId: 114
             },
             {
                 id: 1142,
                 label: 'Units',
-                link: '/tables/units',
+                link: '/settings/units',
                 parentId: 114
             },
             {
                 id: 1143,
                 label: 'Purity (Karats)',
-                link: '/tables/karats',
+                link: '/settings/karats',
                 parentId: 114
             },
             {
                 id: 1146,
                 label: 'Payment methods',
-                link: '/tables/paymentmethod',
+                link: '/settings/paymentmethod',
                 parentId: 114
             },
             {
                 id: 1147,
                 label: 'Order Status',
-                link: '/tables/orderstatus',
+                link: '/settings/orderstatus',
                 parentId: 114
             },
             {
@@ -83,19 +83,19 @@ export const MENU: MenuItem[] = [
             {
                 id: 1151,
                 label: 'Market Categories',
-                link: '/tables/marketcategories',
+                link: '/settings/marketcategories',
                 parentId: 115
             },
             {
                 id: 1152,
                 label: 'Offers',
-                link: '/tables/offers',
+                link: '/settings/offers',
                 parentId: 115
             },
             {
                 id: 1153,
                 label: 'Coupons',
-                link: '/tables/coupons',
+                link: '/settings/coupons',
                 parentId: 115
             },
         ]
@@ -108,7 +108,7 @@ export const MENU: MenuItem[] = [
             {
                 id: 1161,
                 label: 'Users Groups',
-                link: '/tables/usergroups',
+                link: '/settings/usergroups',
                 parentId: 116
             },
             {
@@ -154,14 +154,14 @@ export const MENU: MenuItem[] = [
         id: 130,
         label: 'Add Seller',
         icon: 'bx-id-card',
-        link: '/ecommerce/addseller',
+        link: 'sellers/add',
     },
     {
         id: 131,
         label: 'Sellers List',
         icon: 'bx-group',
-        link: 'ecommerce/sellerslist',
-        
+        link: 'sellers/list',
+
     },
 
     {
@@ -173,14 +173,14 @@ export const MENU: MenuItem[] = [
         id: 118,
         label: 'Add Shop',
         icon: 'bx-add-to-queue',
-        link: '/ecommerce/addshop',
+        link: 'shops/add',
     },
     {
         id: 119,
-        label: 'Shops List',
+        label: 'List Shops',
         icon: 'bx-list-ul',
-        link: 'ecommerce/shopslist',
-        
+        link: 'shops/list',
+
     },
     {
         id: 120,
@@ -191,19 +191,19 @@ export const MENU: MenuItem[] = [
         id: 121,
         label: 'Add Products',
         icon: 'bx-add-to-queue',
-        link: '/ecommerce/add-product',
+        link: '/products/add',
     },
     {
         id: 122,
         label: 'All Products',
         icon: 'bx-list-ol',
-        link: '/ecommerce/products',
+        link: '/products/list',
     },
     {
         id: 123,
         label: 'Barcode Search',
         icon: 'bx-barcode',
-        link: '/filemanager',
+        link: '/products/barcode',
     },
     {
         id: 124,
@@ -399,19 +399,19 @@ export const MENU: MenuItem[] = [
                         id:33 ,
                         label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.BASIC',
                         link: '/email/basic',
-                        parentId:32 
+                        parentId:32
                     },
                     {
                         id:34 ,
                         label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.ALERT',
                         link: '/email/alert',
-                        parentId:32 
+                        parentId:32
                     },
                     {
                         id:35 ,
                         label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.BILLING',
                         link: '/email/billing',
-                        parentId:32 
+                        parentId:32
                     }
                 ]
             }
@@ -873,18 +873,18 @@ export const MENU: MenuItem[] = [
     {
         id: 109,
         icon: 'bx-list-ul',
-        label: 'MENUITEMS.TABLES.TEXT',
+        label: 'MENUITEMS.settings.TEXT',
         subItems: [
             {
                 id: 110,
-                label: 'MENUITEMS.TABLES.LIST.BASIC',
-                link: '/tables/basic',
+                label: 'MENUITEMS.settings.LIST.BASIC',
+                link: '/settings/basic',
                 parentId: 109
             },
             {
                 id: 111,
-                label: 'MENUITEMS.TABLES.LIST.ADVANCED',
-                link: '/tables/advanced',
+                label: 'MENUITEMS.settings.LIST.ADVANCED',
+                link: '/settings/advanced',
                 parentId: 109
             }
         ]
@@ -997,4 +997,3 @@ export const MENU: MenuItem[] = [
         ]
     }*/
 ];
-

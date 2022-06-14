@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-          <div class="card-body">          
+          <div class="card-body">
             <div class="row mb-md-2">
               <div class="col-sm-12 col-md-6">
                 <div class="dataTables_length" id="tickets-table_length"><label
@@ -23,7 +23,7 @@
                     <input type="text" name="searchTerm" class="form-control form-control-sm ml-2"
                       aria-controls="tickets-table" [(ngModel)]="service.searchTerm"></label>
                       <div class="text-sm-right">
-                          <button type="button" class="btn btn-success btn-rounded mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i>
+                          <button type="button" (click)="open(content)"  class="btn btn-success btn-rounded mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i>
                             Add New Category</button>
                         </div>
                   </div>
@@ -43,14 +43,14 @@
                     <th>Actions</th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let table of tables$ | async;let i=index">
+                <tbody *ngFor="let table of tables$ | async">
                   <tr>
-                    <td>{{ i + 1}}</td>
+                    <td><ngb-highlight [result]="table.id" [term]="service.searchTerm"></ngb-highlight></td>
                     <td>
-                      <ngb-highlight [result]="table.nameEn" [term]="service.searchTerm"></ngb-highlight>
+                      <ngb-highlight [result]="table.name_en" [term]="service.searchTerm"></ngb-highlight>
                     </td>
                     <td>
-                      <ngb-highlight [result]="table.nameAr" [term]="service.searchTerm"></ngb-highlight>
+                      <ngb-highlight [result]="table.name_ar" [term]="service.searchTerm"></ngb-highlight>
                     </td>
                     <td>
                       <div class="custom-control custom-switch mb-3" dir="ltr">
@@ -59,42 +59,19 @@
                         </div>
                     </td>
                     <td>
-                      <div ngbDropdown placement="bottom-left">
+                      <div ngbDropdown container="body" placement="bottom-left">
                         <i class="mdi mdi-dots-vertical dropdown-toggle" ngbDropdownToggle data-toggle="dropdown"
                           aria-expanded="true"></i>
                         <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
-                          <a class="dropdown-item" href="javascript: void(0);"><i class="mdi mdi-delete"></i>delete</a>
-                          <a class="dropdown-item" href="javascript: void(0);"><i
+                          <a class="dropdown-item" (click)="deleteGroupItem(table.id)"><i class="mdi mdi-delete"></i>delete</a>
+                          <a class="dropdown-item" (click)="openEdit(editContent, table.id)"><i
                               class="mdi mdi-account-edit"></i>Edit</a>
                         </div>
                       </div>
                     </td>
                   </tr>
-  
-                  <tr *ngIf="!hideme[i]" class="sub-table no-bg">
-                    <td align="center"> </td>
-                    <td colspan="15" class="p-0">
-                      <table class="table mb-0 table-striped">
-                        <thead class="bg-dark text-white">
-                          <tr>
-                            <th>CountryName</th>
-                            <th>Price/Unit</th>
-                            <th>Sales Account</th>
-                            <th>Buy Account</th>
-  
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let table of tables$ | async; let i = index">
-                            <td>{{table.name}}</td>
-                            <td>{{table.name}}</td>
-                            <td>{{table.name}}</td>
-                            <td>{{table.name}}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
+
+
                 </tbody>
               </table>
             </div>
@@ -123,27 +100,86 @@
   </div>
   <ng-template #content role="document" let-modal>
     <div class="modal-header">
-      <h5 class="modal-title mt-0">Modal Heading</h5>
+      <h5 class="modal-title mt-0">Add New Category</h5>
       <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
     </div>
     <div class="modal-body">
-      <h5>Overflowing text to show scroll behavior</h5>
-      <p>Cras mattis consectetur purus sit amet fermentum.
-        Cras justo odio, dapibus ac facilisis in,
-        egestas eget quam. Morbi leo risus, porta ac
-        consectetur ac, vestibulum at eros.</p>
-      <p>Praesent commodo cursus magna, vel scelerisque
-        nisl consectetur et. Vivamus sagittis lacus vel
-        augue laoreet rutrum faucibus dolor auctor.</p>
-      <p>Aenean lacinia bibendum nulla sed consectetur.
-        Praesent commodo cursus magna, vel scelerisque
-        nisl consectetur et. Donec sed odio dui. Donec
-        ullamcorper nulla non metus auctor
-        fringilla.</p>
+      <form class="form-horizontal" id="newForm" [formGroup]="newForm" (ngSubmit)="onSubmit(modal)">
+
+        <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
+
+        <div class="form-group">
+          <label for="name_en">Category Name</label>
+
+          <input type="text" formControlName="name_en" class="form-control" id="name_en"
+            [ngClass]="{ 'is-invalid': submitted && f.name_en.errors }" />
+          <div *ngIf="submitted && f.name_en.errors" class="invalid-feedback">
+            <div *ngIf="f.name_en.errors.required">Category Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name_ar">إسم الفئة</label>
+
+          <input type="text" formControlName="name_ar" class="form-control" id="name_ar"
+            [ngClass]="{ 'is-invalid': submitted && f.name_ar.errors }" />
+          <div *ngIf="submitted && f.name_ar.errors" class="invalid-feedback">
+            <div *ngIf="f.name_ar.errors.required"> إسم الفئة is required</div>
+          </div>
+        </div>
+
+
+      </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
+      <input class="btn btn-primary" type="submit" form="newForm" value="Save"/>
+
     </div>
   </ng-template>
-  
+
+  <ng-template #editContent role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Edit Category</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal" id="editForm" [formGroup]="editForm" (ngSubmit)="onEdit(modal)">
+
+        <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
+        <div class="form-group">
+          <label for="name_en">ID</label>
+
+          <input type="text" formControlName="id" class="form-control" id="id"
+            [ngClass]="{ 'is-invalid': submitted && fe.id.errors }"/>
+          <div *ngIf="submittedEdit && fe.id.errors" class="invalid-feedback">
+            <div *ngIf="fe.id.errors.required">ID is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name_en">Category Name</label>
+
+          <input type="text" formControlName="name_en" class="form-control" id="name_en"
+            [ngClass]="{ 'is-invalid': submitted && fe.name_en.errors }" />
+          <div *ngIf="submittedEdit && fe.name_en.errors" class="invalid-feedback">
+            <div *ngIf="fe.name_en.errors.required">Category Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name_ar">إسم الفئة</label>
+
+          <input type="text" formControlName="name_ar" class="form-control" id="name_ar"
+            [ngClass]="{ 'is-invalid': submitted && fe.name_ar.errors }" />
+          <div *ngIf="submittedEdit && fe.name_ar.errors" class="invalid-feedback">
+            <div *ngIf="fe.name_ar.errors.required"> إسم الفئة is required</div>
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      <input class="btn btn-primary" type="submit" form="editForm" value="Save"/>
+
+    </div>
+  </ng-template>

@@ -15,10 +15,13 @@ import { UIModule } from '../shared/ui/ui.module';
 import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { PagesRoutingModule } from './pages-routing.module';
+import { PermissionGuard } from '../core/guards/permisson.guard';
 
 import { DashboardsModule } from './dashboards/dashboards.module';
 import { EcommerceModule } from './ecommerce/ecommerce.module';
-
+import { ShopsModule } from './shops/shops.module';
+import { SellersModule } from './sellers/sellers.module';
+import { ProductsModule } from './products/products.module';
 import { CryptoModule } from './crypto/crypto.module';
 import { EmailModule } from './email/email.module';
 import { InvoicesModule } from './invoices/invoices.module';
@@ -86,9 +89,13 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FullCalendarModule,
     NgbNavModule,
     NgbTooltipModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    ShopsModule,
+    ProductsModule,
   ],
   providers: [
+    PermissionGuard,
+
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

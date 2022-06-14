@@ -4,19 +4,25 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserlistComponent } from './userlist/userlist.component';
 import { UsergridComponent } from './usergrid/usergrid.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PermissionGuard } from '../../core/guards/permisson.guard';
 
 const routes: Routes = [
     {
         path: 'list',
-        component: UserlistComponent
+        component: UserlistComponent,
+
     },
     {
         path: 'grid',
-        component: UsergridComponent
+        component: UsergridComponent,
+        canActivate: [PermissionGuard]
+
     },
     {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [PermissionGuard]
+
     }
 ];
 

@@ -14,30 +14,23 @@ import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { NgSelectModule } from '@ng-select/ng-select';
 
-import { ProductsComponent } from './products/products.component';
-import { ProductdetailComponent } from './productdetail/productdetail.component';
 import { ShopsComponent } from './shops/shops.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
-import { AddproductComponent } from './addproduct/addproduct.component';
 import { CustomersComponent } from './customers/customers.component';
 import { OrdersComponent } from './orders/orders.component';
-import { AddshopComponent } from './addshop/addshop.component';
-import { ShopslistComponent } from './shopslist/shopslist.component';
 import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component';
 import { TermsComponent } from './terms/terms.component';
-import { AddsellerComponent } from './addseller/addseller.component';
-import { SellerslistComponent } from './sellerslist/sellerslist.component';
+
 
 const config: DropzoneConfigInterface = {
   // Change this to your upload POST address:
-  url: 'https://httpbin.org/post',
-  maxFilesize: 100,
+
 };
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [ProductsComponent, ProductdetailComponent, ShopsComponent, CheckoutComponent, CartComponent, AddproductComponent, CustomersComponent, OrdersComponent, AddshopComponent, ShopslistComponent, PrivacypolicyComponent, TermsComponent, AddsellerComponent, SellerslistComponent],
+  declarations: [ ShopsComponent, CheckoutComponent, CartComponent, CustomersComponent, OrdersComponent, PrivacypolicyComponent, TermsComponent],
   imports: [
     CommonModule,
     EcommerceRoutingModule,

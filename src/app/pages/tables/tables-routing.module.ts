@@ -12,59 +12,71 @@ import { ItemcategoriesComponent } from './itemcategories/itemcategories.compone
 import { OffersComponent } from './offers/offers.component';
 import { CouponsComponent } from './coupons/coupons.component';
 import { UsergroupsComponent } from './usergroups/usergroups.component';
-import { OrserstatusComponent } from './orserstatus/orserstatus.component';
+import { OrderstatusComponent } from './orderstatus/orderstatus.component';
 
 
+import { PermissionGuard } from '../../core/guards/permisson.guard';
 
 
 const routes: Routes = [
     {
         path: 'basic',
-        component: BasicComponent
+        component: BasicComponent,
+
     },
     {
         path: 'advanced',
-        component: AdvancedtableComponent
+        component: AdvancedtableComponent,
+
     },
     {
         path: 'itemsgroups',
-        component: ItemsgroupsComponent
+        component: ItemsgroupsComponent,
+
     },
     {
         path: 'units',
-        component: UnitsComponent
+        component: UnitsComponent,
     },
     {
         path: 'karats',
-        component: KaratsComponent
+        component: KaratsComponent,
+
     },
     {
         path: 'paymentmethod',
-        component: PaymentmethodComponent
+        component: PaymentmethodComponent,
+
     },
     {
         path: 'marketcategories',
-        component: MarketCategoriesComponent
+        component: MarketCategoriesComponent,
+
     },
     {
         path: 'itemcategories',
-        component: ItemcategoriesComponent
+        component: ItemcategoriesComponent,
+
     },
     {
         path: 'offers',
-        component: OffersComponent
+        component: OffersComponent,
+
     },
     {
         path: 'coupons',
-        component: CouponsComponent
+        component: CouponsComponent,
+
     },
     {
         path: 'usergroups',
-        component: UsergroupsComponent
+        component: UsergroupsComponent,
+
     },
     {
         path: 'orderstatus',
-        component: OrserstatusComponent
+        component: OrderstatusComponent,
+
     }
 ];
 

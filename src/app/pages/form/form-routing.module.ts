@@ -11,20 +11,25 @@ import { AdvancedformComponent } from './advancedform/advancedform.component';
 import { RepeaterComponent } from './repeater/repeater.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 import { AdduserComponent } from './adduser/adduser.component';
+import { SystemInfoResolver } from '../../core/resolvers/systemInfo.resolver';
+import { PermissionGuard } from '../../core/guards/permisson.guard';
 
 
 const routes: Routes = [
     {
         path: 'elements',
-        component: ElementsComponent
+        component: ElementsComponent,
+
     },
     {
         path: 'validation',
-        component: ValidationComponent
+        component: ValidationComponent,
+
     },
     {
         path: 'editor',
-        component: EditorComponent
+        component: EditorComponent,
+
     },
     {
         path: 'uploads',
@@ -32,11 +37,13 @@ const routes: Routes = [
     },
     {
         path: 'wizard',
-        component: WizardComponent
+        component: WizardComponent,
+
     },
     {
         path: 'mask',
-        component: MaskComponent
+        component: MaskComponent,
+
     },
     {
         path: 'advanced',
@@ -44,15 +51,18 @@ const routes: Routes = [
     },
     {
         path: 'repeater',
-        component: RepeaterComponent
+        component: RepeaterComponent,
+
     },
     {
         path: 'layouts',
-        component: LayoutsComponent
+        component: LayoutsComponent,
+        resolve: {systemInfo: SystemInfoResolver}
     },
     {
         path: 'adduser',
-        component: AdduserComponent
+        component: AdduserComponent,
+
     }
 ];
 

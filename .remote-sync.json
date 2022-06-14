@@ -1,0 +1,19 @@
+{
+  "logger": {
+    "title": "Remote Sync"
+  },
+  "uploadOnSave": true,
+  "useAtomicWrites": false,
+  "deleteLocal": false,
+  "hostname": "128.199.66.70",
+  "port": "22",
+  "target": "/var/www/kenfAdmin-main",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "watch": [],
+  "useAgent": true,
+  "transport": "scp",
+  "username": "root"
+}

@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common
 
 import { environment } from '../environments/environment';
 
-import { NgbNavModule, NgbAccordionModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule , NgbNavModule, NgbAccordionModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
@@ -20,10 +20,13 @@ import { initFirebaseBackend } from './authUtils';
 import { CyptolandingComponent } from './cyptolanding/cyptolanding.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { ErrorInterceptor } from './core/helpers/error.interceptor';
+import { ErrorInterceptor } from './core/services/interceptors/error.interceptor';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { FakeBackendInterceptor } from './core/helpers/fake-backend';
+import { ToastrModule } from 'ngx-toastr';
 
+import { SettingsService } from './core/services/settings.service';
+import { MarketingService } from './core/services/marketing.service';
 
 
 if (environment.defaultauth === 'firebase') {
@@ -46,6 +49,8 @@ export function createTranslateLoader(http: HttpClient): any {
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ToastrModule.forRoot(), // ToastrModule added
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -60,11 +65,14 @@ export function createTranslateLoader(http: HttpClient): any {
     NgbAccordionModule,
     NgbNavModule,
     NgbTooltipModule,
+    NgbDatepickerModule,
     SharedModule,
     ScrollToModule.forRoot()
   ],
   bootstrap: [AppComponent],
   providers: [
+    SettingsService,
+    MarketingService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true },

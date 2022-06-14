@@ -11,6 +11,7 @@ import { ContactsRoutingModule } from './contacts-routing.module';
 import { UsergridComponent } from './usergrid/usergrid.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SharedDataUsersService } from './userlist/data';
 
 @NgModule({
   declarations: [UsergridComponent, UserlistComponent, ProfileComponent],
@@ -20,7 +21,10 @@ import { ProfileComponent } from './profile/profile.component';
     WidgetModule,
     UIModule,
     NgApexchartsModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+  ],
+  providers: [
+    SharedDataUsersService,
   ]
 })
 export class ContactsModule { }

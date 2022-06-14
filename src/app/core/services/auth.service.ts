@@ -63,4 +63,3 @@ export class AuthenticationService {
         getFirebaseBackend().logout();
     }
 }
-

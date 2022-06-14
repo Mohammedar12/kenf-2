@@ -2,8 +2,8 @@ import { Injectable, PipeTransform } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
-import { Table, SearchResult } from './advanced.model';
-import { tableData } from './data';
+import { Offer, SearchResult } from '../../../core/models/offer.models';
+import { SharedDataOfferService } from './data';
 import { SortDirection } from './advanced-sortable.directive';
 
 interface State {
@@ -25,7 +25,7 @@ const compare = (v1: string, v2: string) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
  * @param column Fetch the column
  * @param direction Sort direction Ascending or Descending
  */
-function sort(tables: Table[], column: string, direction: string): Table[] {
+function sort(tables: Offer[], column: string, direction: string): Offer[] {
     if (direction === '' || column === '') {
         return tables;
     } else {
@@ -41,14 +41,15 @@ function sort(tables: Table[], column: string, direction: string): Table[] {
  * @param tables Table field value fetch
  * @param term Search the value
  */
-function matches(tables: Table, term: string, pipe: PipeTransform) {
-    return tables.nameEn.toLowerCase().includes(term.toLowerCase())
-        || tables.nameAr.toLowerCase().includes(term)
-        || tables.descriptionEn.toLowerCase().includes(term)
-        || tables.descriptionAr.toLowerCase().includes(term)
-        || tables.startDate.toLowerCase().includes(term)
-        || tables.endDate.toLowerCase().includes(term)
-        || tables.Status.toLowerCase().includes(term);
+function matches(tables: Offer, term: string, pipe: PipeTransform) {
+    return tables.name_en.toLowerCase().includes(term.toLowerCase())
+        || tables.name_ar.toLowerCase().includes(term)
+        || tables.description_ar.toLowerCase().includes(term)
+        || tables.description_en.toLowerCase().includes(term.toLowerCase())
+        || tables.start_date.toLowerCase().includes(term)
+        || tables.end_date.toLowerCase().includes(term)
+        || tables.id == parseInt(term)
+        || tables.status.toLowerCase().includes(term);
 }
 
 @Injectable({
@@ -61,7 +62,7 @@ export class AdvancedService {
     // tslint:disable-next-line: variable-name
     private _search$ = new Subject<void>();
     // tslint:disable-next-line: variable-name
-    private _tables$ = new BehaviorSubject<Table[]>([]);
+    private _tables$ = new BehaviorSubject<Offer[]>([]);
     // tslint:disable-next-line: variable-name
     private _total$ = new BehaviorSubject<number>(0);
     // tslint:disable-next-line: variable-name
@@ -76,7 +77,10 @@ export class AdvancedService {
         totalRecords: 0
     };
 
-    constructor(private pipe: DecimalPipe) {
+    private tableData: Offer[];
+
+    constructor(private pipe: DecimalPipe,private sharedDataService: SharedDataOfferService,) {
+      this.sharedDataService.currentTable.subscribe(tableData => (this.tableData = tableData));
         this._search$.pipe(
             tap(() => this._loading$.next(true)),
             debounceTime(200),
@@ -135,7 +139,7 @@ export class AdvancedService {
         const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
         // 1. sort
-        let tables = sort(tableData, sortColumn, sortDirection);
+        let tables = sort(this.tableData, sortColumn, sortDirection);
 
         // 2. filter
         tables = tables.filter(table => matches(table, searchTerm, this.pipe));

@@ -32,19 +32,27 @@ export class LoaderInterceptorService implements HttpInterceptor {
         .subscribe(
           event => {
             if (event instanceof HttpResponse) {
+              console.log(event);
+
               this.removeRequest(req);
               observer.next(event);
             }
           },
           err => {
+            console.log(err);
+
             this.removeRequest(req);
             observer.error(err);
           },
           () => {
+            console.log(req);
+
             this.removeRequest(req);
             observer.complete();
           });
       return () => {
+        console.log(req);
+
         this.removeRequest(req);
         subscription.unsubscribe();
       };

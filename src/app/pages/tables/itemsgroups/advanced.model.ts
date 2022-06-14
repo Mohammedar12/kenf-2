@@ -1,13 +1,10 @@
 // Table data
-export interface Table {
-    nameEn: string;
-    nameAr: string;
-    Status: string;
-    
-}
+// export interface Table {
+//     id: number;
+//     name_en: string;
+//     name_ar: string;
+//     status: string;
+//
+// }
 
 // Search Data
-export interface SearchResult {
-    tables: Table[];
-    total: number;
-}
