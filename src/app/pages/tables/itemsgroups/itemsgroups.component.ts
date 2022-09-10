@@ -177,5 +177,9 @@ export class ItemsgroupsComponent implements OnInit {
       // this.newForm.reset();
     });
   }
+  toggleActive(id){
+    console.log(id);
+
+  }
 
 }

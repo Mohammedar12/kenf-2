@@ -15,7 +15,7 @@ const routes: Routes = [
     {
         path: 'add',
         component: AddshopComponent,
-        resolve: {owners: UsersResolver}
+        // resolve: {owners: UsersResolver}
 
     },
     {

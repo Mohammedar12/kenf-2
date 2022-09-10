@@ -44,52 +44,52 @@ export class MarketingService {
     return this.config;
   }
   addSeller(sysInfo): Observable<any> {
-    return this.http.post(environment.backend + `/market/seller`, sysInfo, this.httpOptions);
+    return this.http.post(environment.backend + `/seller`, sysInfo, this.httpOptions);
   }
   getSeller(id) {
-    return this.http.get<Seller>(environment.backend + `/market/seller?id=` + id, this.httpOptions);
+    return this.http.get<Seller>(environment.backend + `/seller?id=` + id, this.httpOptions);
   }
   getSellers() {
-    return this.http.get<Seller[]>(environment.backend + `/market/seller`, this.httpOptions);
+    return this.http.get<Seller[]>(environment.backend + `/seller`, this.httpOptions);
   }
   delSeller(sysInfo) {
-    return this.http.delete(environment.backend + `/market/seller?id=` + sysInfo, this.httpOptions);
+    return this.http.delete(environment.backend + `/seller?id=` + sysInfo, this.httpOptions);
   }
   addProduct(sysInfo): Observable<any> {
-    return this.http.post(environment.backend + `/market/product`, sysInfo, this.httpOptions);
+    return this.http.post(environment.backend + `/product`, sysInfo, this.httpOptions);
   }
   getFiltredProducts(querry) {
-    return this.http.post<any[]>(environment.backend + `/market/product/filter`, querry, this.httpOptions);
+    return this.http.post<any[]>(environment.backend + `/product/filter`, querry, this.httpOptions);
   }
   getProducts() {
-    return this.http.get<Product[]>(environment.backend + `/market/product`, this.httpOptions);
+    return this.http.get<Product[]>(environment.backend + `/product`, this.httpOptions);
   }
   generateBarcode(sysInfo) {
-    return this.http.get<string>(environment.backend + `/market/product/generateBarcode?id=` + sysInfo, this.httpOptions);
+    return this.http.get<string>(environment.backend + `/product/generateBarcode?id=` + sysInfo, this.httpOptions);
   }
   getBarcode(sysInfo) {
-    return this.http.get<string>(environment.backend + `/market/product/getBarcode?barcode=` + sysInfo, this.httpOptions);
+    return this.http.get<string>(environment.backend + `/product/getBarcode?barcode=` + sysInfo, this.httpOptions);
   }
   searchBarcode(sysInfo) {
-    return this.http.get<Product>(environment.backend + `/market/product/scanBarcode?barcode=` + sysInfo, this.httpOptions);
+    return this.http.get<Product>(environment.backend + `/product/scanBarcode?barcode=` + sysInfo, this.httpOptions);
   }
   delProduct(sysInfo) {
-    return this.http.delete(environment.backend + `/market/product?id=` + sysInfo, this.httpOptions);
+    return this.http.delete(environment.backend + `/product?id=` + sysInfo, this.httpOptions);
   }
   getProduct(sysInfo) {
-    return this.http.get<Product>(environment.backend + `/market/product?id=` + sysInfo, this.httpOptions);
+    return this.http.get<Product>(environment.backend + `/product?id=` + sysInfo, this.httpOptions);
   }
   addShop(sysInfo): Observable<any> {
-    return this.http.post(environment.backend + `/market/shop`, sysInfo, this.httpOptions);
+    return this.http.post(environment.backend + `/shop`, sysInfo, this.httpOptions);
   }
   getShops() {
-    return this.http.get<Shop[]>(environment.backend + `/market/shop`, this.httpOptions);
+    return this.http.get<Shop[]>(environment.backend + `/shop`, this.httpOptions);
   }
   getShop(id) {
-    return this.http.get<Shop>(environment.backend + `/market/shop?id=`+id, this.httpOptions);
+    return this.http.get<Shop>(environment.backend + `/shop?id=`+id, this.httpOptions);
   }
   delShop(sysInfo) {
-    return this.http.delete(environment.backend + `/market/shop?id=` + sysInfo, this.httpOptions);
+    return this.http.delete(environment.backend + `/shop?id=` + sysInfo, this.httpOptions);
   }
   getMarketCategory() {
     return this.http.get<MarketCategory[]>(environment.backend + `/market/category`, this.httpOptions);

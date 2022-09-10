@@ -54,8 +54,8 @@
                   </td>
                   <td>
                     <div class="custom-control custom-switch mb-3" dir="ltr">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
-                        <label class="custom-control-label" for="customSwitch1"></label>
+                        <input type="checkbox" class="custom-control-input" id="customSwitch{{table.id}}" (change)="toggleActive(table.id)" [checked]="table.active">
+                        <label class="custom-control-label" for="customSwitch{{table.id}}"></label>
                       </div>
                   </td>
                   <td>

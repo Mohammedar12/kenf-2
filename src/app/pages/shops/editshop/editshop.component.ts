@@ -35,10 +35,9 @@ export class EditShopComponent implements OnInit, OnDestroy {
   customersData: Shop;
   constructor(private route: ActivatedRoute, private router: Router, public formBuilder: FormBuilder, private http: HttpClient, private setserv: MarketingService, private userService: UserProfileService) {
     this.config = setserv.getUploadConfig();
-    this.customersData = this.route.snapshot.data.shop;
     this.files = this.customersData.images;
-    let owners = this.route.snapshot.data.owners;
-    owners.forEach(element => this.owners.push({ id: element.id, email: element.email }));
+    // let owners = this.route.snapshot.data.owners;
+    // owners.forEach(element => this.owners.push({ id: element.id, email: element.email }));
   }
 
 
@@ -60,6 +59,14 @@ export class EditShopComponent implements OnInit, OnDestroy {
     //   });
     // });
 
+    this.userService.getAll().subscribe( val =>   {
+      // let owners = this.route.snapshot.data.owners;
+      let owners = [];
+      val.forEach(element => owners.push({id: element.id, email: element.email}));
+      this.owners = owners;
+      // this.customersData = val,
+      console.log(this.owners);
+     });
     this.productForm = this.formBuilder.group({
       id: [this.customersData.id, [Validators.required]],
       seller_id: [this.customersData.seller_id, [Validators.required]],

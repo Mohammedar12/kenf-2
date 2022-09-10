@@ -27,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { SettingsService } from './core/services/settings.service';
 import { MarketingService } from './core/services/marketing.service';
+import { CustomerService } from './core/services/customer.service';
 
 
 if (environment.defaultauth === 'firebase') {
@@ -72,6 +73,7 @@ export function createTranslateLoader(http: HttpClient): any {
   bootstrap: [AppComponent],
   providers: [
     SettingsService,
+    CustomerService,
     MarketingService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

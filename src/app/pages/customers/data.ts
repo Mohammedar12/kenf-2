@@ -1,14 +1,14 @@
 const customersData = [
-    // {
-    //     id: 1,
-    //     username: 'Faris Yahia',
-    //     phone: '325-250-1106',
-    //     email: 'StephenRash@teleworm.us',
-    //     address: '2470 Palestine St, Jeddah 11714',
-    //     rating: '4.2',
-    //     balance: '$5,412',
-    //     date: '07 Feb, 2021'
-    // },
+    {
+        id: 1,
+        username: 'Faris Yahia',
+        phone: '325-250-1106',
+        email: 'StephenRash@teleworm.us',
+        address: '2470 Palestine St, Jeddah 11714',
+        rating: '4.2',
+        balance: '$5,412',
+        date: '07 Feb, 2021'
+    },
     // {
     //     id: 2,
     //     username: 'Juan Mays',

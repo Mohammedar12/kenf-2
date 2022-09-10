@@ -6,6 +6,7 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { MarketingService } from '../../../core/services/marketing.service';
 import { ActivatedRoute, Router } from '@angular/router'
 import { environment } from '../../../../environments/environment';
+import { UserProfileService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-addshop',
@@ -28,10 +29,9 @@ export class AddshopComponent implements OnInit {
   submitted: boolean = false;
   files: number[] = [];
   owners: any[] = [];
-  constructor(private route: ActivatedRoute,private router: Router, public formBuilder: FormBuilder, private http: HttpClient, private setserv: MarketingService) {
+  constructor(private route: ActivatedRoute,private router: Router, public formBuilder: FormBuilder, private http: HttpClient, private setserv: MarketingService, private userService: UserProfileService) {
     this.config = setserv.getUploadConfig();
-    let owners = this.route.snapshot.data.owners;
-    owners.forEach(element => this.owners.push({id: element.id, email: element.email}));
+
     console.log( this.owners);
 
 
@@ -41,7 +41,14 @@ export class AddshopComponent implements OnInit {
 
   ngOnInit() {
     this.breadCrumbItems = [{ label: 'Shops' }, { label: 'Add Shop', active: true }];
-
+    this.userService.getAll().subscribe( val =>   {
+      // let owners = this.route.snapshot.data.owners;
+      let owners = [];
+      val.forEach(element => owners.push({id: element.id, email: element.email}));
+      this.owners = owners;
+      // this.customersData = val,
+      console.log(this.owners);
+     });
     this.productForm = this.formBuilder.group({
       seller_id: [null, [Validators.required]],
       app_name_ar: ['', [Validators.required]],

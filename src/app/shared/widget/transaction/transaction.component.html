@@ -26,22 +26,22 @@
           </div>
         </td>
         <td>
-          <a href="javascript: void(0);" class="text-body font-weight-bold">{{data.id}}</a>
+          <a href="javascript: void(0);" class="text-body font-weight-bold">{{data.order_id}}</a>
         </td>
-        <td>{{data.name}}</td>
-        <td>{{data.date}}</td>
-        <td>{{data.total}}</td>
+        <td>{{data.customer_id.name}}</td>
+        <td>{{data.customer_id.createdAt  | date:'dd/LL/YYYY' }}</td>
+        <td>{{data.price}}</td>
         <td>
           <span class="badge badge-pill badge-soft-success font-size-12" [ngClass]=" { 'badge-soft-danger': data.status === 'Chargeback',
                         'badge-soft-warning':data.status === 'Refund' }">{{data.status}}</span>
         </td>
         <td>
           <i :class="`fab ${data.payment[0]} mr-1`"></i>
-          {{data.payment[1]}}
+          {{data.paymentMethod}}
         </td>
         <td>
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary btn-sm btn-rounded" (click)="openModal(content)">View
+          <button type="button" class="btn btn-primary btn-sm btn-rounded" (click)="openModal(content, data.order_id)">View
             Details</button>
         </td>
       </tr>
@@ -55,12 +55,24 @@
     </div>
     <div class="modal-body">
       <p class="mb-2">
-        Product id:
-        <span class="text-primary">#SK2540</span>
+        Order id:
+        <span class="text-primary">#{{selected.order_id}}</span>
       </p>
       <p class="mb-4">
         Billing Name:
-        <span class="text-primary">Neal Matthews</span>
+        <span class="text-primary">{{selected.customer_id.name}}</span>
+      </p>
+      <p class="mb-4">
+        Billing Email:
+        <span class="text-primary">{{selected.customer_id.email}}</span>
+      </p>
+      <p class="mb-4">
+        Billing Phone:
+        <span class="text-primary">{{selected.customer_id.phone}}</span>
+      </p>
+      <p class="mb-4">
+        Billing Address:
+        <span class="text-primary">{{selected.customer_id.address}}</span>
       </p>
       <div class="table-responsive">
         <table class="table table-centered table-nowrap">
@@ -72,7 +84,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <!-- <tr>
               <th scope="row">
                 <div>
                   <img src="assets/images/product/gold1.jpeg" alt class="avatar-sm" />
@@ -85,26 +97,26 @@
                 </div>
               </td>
               <td>$ 255</td>
-            </tr>
+            </tr> -->
             <tr>
               <th scope="row">
                 <div>
-                  <img src="assets/images/product/gold1.jpeg" alt class="avatar-sm" />
+                  <img src="{{backend + '/getfile/?id='  + selected.products[0].product.images[0]}}" alt class="avatar-sm" />
                 </div>
               </th>
               <td>
                 <div>
-                  <h5 class="text-truncate font-size-14">18K golden bracelet</h5>
-                  <p class="text-muted mb-0">SAR 145 x 1</p>
+                  <h5 class="text-truncate font-size-14">18K {{selected.products[0].product.name_en}}</h5>
+                  <p class="text-muted mb-0">SAR {{selected.products[0].price}} x {{selected.products[0].quantity}}</p>
                 </div>
               </td>
-              <td>$ 145</td>
+              <td>SAR {{selected.products[0].price}}</td>
             </tr>
             <tr>
               <td colspan="2">
                 <h6 class="m-0 text-right">Sub Total:</h6>
               </td>
-              <td>$ 400</td>
+              <td>SAR {{selected.products[0].price}}</td>
             </tr>
             <tr>
               <td colspan="2">
@@ -116,7 +128,7 @@
               <td colspan="2">
                 <h6 class="m-0 text-right">Total:</h6>
               </td>
-              <td>$ 400</td>
+              <td>SAR {{selected.products[0].price}}</td>
             </tr>
           </tbody>
         </table>

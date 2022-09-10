@@ -1,11 +1,11 @@
 const listData = [
-    // {
-    //     name: 'Marion Burton',
-    //     id: '#14251',
-    //     title: '',
-    //     amount: '$ 1455',
-    //     date: '10 Oct, 19',
-    // },
+    {
+        name: 'Ali',
+        id: '#1',
+        title: '',
+        amount: 'SAR 100',
+        date: '22 Jun, 22',
+    },
     // {
     //     image: 'assets/images/users/avatar-2.jpg',
     //     name: 'Francis Witte',

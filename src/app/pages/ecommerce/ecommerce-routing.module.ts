@@ -4,8 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ShopsComponent } from './shops/shops.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
-import { CustomersComponent } from './customers/customers.component';
-import { OrdersComponent } from './orders/orders.component';
+// import { CustomersComponent } from './customers/customers.component';
 import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component';
 import { TermsComponent } from './terms/terms.component';
 import { PermissionGuard } from '../../core/guards/permisson.guard';
@@ -25,15 +24,12 @@ const routes: Routes = [
         path: 'cart',
         component: CartComponent,
     },
-    {
-        path: 'customers',
-        component: CustomersComponent,
-        // canActivate: [PermissionGuard]
-    },
-    {
-        path: 'orders',
-        component: OrdersComponent,
-    },
+    // {
+    //     path: 'customers',
+    //     component: CustomersComponent,
+    //     // canActivate: [PermissionGuard]
+    // },
+
     {
         path: 'privacypolicy',
         component: PrivacypolicyComponent,

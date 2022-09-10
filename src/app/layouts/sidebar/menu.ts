@@ -214,13 +214,13 @@ export const MENU: MenuItem[] = [
         id: 125,
         label: 'Customers',
         icon: 'bx-group',
-        link: 'ecommerce/customers',
+        link: '/customers/list',
     },
     {
         id: 126,
         label: 'Orders',
         icon: 'bx-list-ul',
-        link: '/ecommerce/orders',
+        link: '/customers/orders',
     },
     {
         id: 127,
